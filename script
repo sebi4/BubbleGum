@@ -1,0 +1,70 @@
+if game.PlaceId == 2512643572 then
+    local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+    local Window = Library.CreateLib("BubbleGum Destroyer", "Midnight")
+
+    --AutoFarm
+    local AutoFarm = Window:NewTab("AutoFarm")
+    local AutoFarmSection = AutoFarm:NewSection("AutoFarm")
+
+    AutoFarmSection:NewToggle("AutoFarm", "Auto Farm Bubbles", function(state)
+        if state then
+            _G.loop = true
+            while _G.loop == true do wait()
+                print("Toggle on")
+
+                local A_1 = "BlowBubble"
+                local Event = game:GetService("ReplicatedStorage").NetworkRemoteEvent
+                 Event:FireServer(A_1)
+            end
+        else
+            _G.loop = false
+            while _G.loop do wait()
+                print("Toggle off")
+
+                local A_1 = "BlowBubble"
+                local Event = game:GetService("ReplicatedStorage").NetworkRemoteEvent
+                 Event:FireServer(A_1)
+            end
+        end
+    end)
+
+    -- AutoSell
+    local AutoSell = Window:NewTab("AutoSell")
+    local AutoSellSection = AutoSell:NewSection("AutoSell")
+    AutoSellSection:NewToggle("AutoSell", "Auto Sell Bubbles", function(state)
+        if state then
+            _G.loop = true
+            while _G.loop == true do wait()
+                print("Toggle on")
+
+                local A_1 = "SellBubble"
+                local A_2 = "TwilightSell"
+                local Event = game:GetService("ReplicatedStorage").NetworkRemoteEvent
+                Event:FireServer(A_1, A_2)
+            end
+        else
+            _G.loop = false
+            while _G.loop do wait()
+                print("Toggle off")
+
+                local A_1 = "SellBubble"
+                local A_2 = "TwilightSell"
+                local Event = game:GetService("ReplicatedStorage").NetworkRemoteEvent
+                Event:FireServer(A_1, A_2)
+            end
+        end
+    end)
+
+    --Gem Exchange
+    local GemChange = Window:NewTab("GemExchange")
+    local GemChangeSection = GemChange:NewSection("Exchange Coins For Gems")
+    GemChangeSection:NewButton("Change Coins To Gems", "Exchange 5 coins for 1 gem", function()
+        print("Clicked")
+        local A_1 = "Exchange"
+        local A_2 = "Gem Genie"
+        local Event = game:GetService("ReplicatedStorage").NetworkRemoteEvent
+        Event:FireServer(A_1, A_2)
+end)
+
+
+end
